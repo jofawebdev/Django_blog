@@ -1,0 +1,29 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="card shadow">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{% static about_info.image_url %}" class="img-fluid rounded-start" alt="About Django Blog">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h1 class="card-title">{{ about_info.heading }}</h1>
+                        <p class="card-text">{{ about_info.description }}</p>
+                        <h5 class="mt-4">Key Features:</h5>
+                        <ul class="list-group list-group-flush">
+                            {% for feature in about_info.features %}
+                                <li class="list-group-item">{{ feature }}</li>
+                            {% endfor %}
+                        </ul>
+                        <p class="card-text mt-3">
+                            <small class="text-muted">{{ about_info.developer_info }}</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

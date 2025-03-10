@@ -1,0 +1,111 @@
+/* CSS Variables for theme colors and common values */
+:root {
+    --color-background: #fafafa;
+    --color-text: #333;
+    --color-heading: #444;
+    --color-link-hover: #428bca;
+    --color-nav-link: #cbd5db;
+    --color-nav-link-hover: #fff;
+    --color-content-bg: #fff;
+    --border-color: #ddd;
+    --metadata-border-color: #e3e3e3;
+    --bg-steel: #5f788a;
+}
+
+/* Global Styles */
+body {
+    background: var(--color-background);
+    color: var(--color-text);
+    margin-top: 5rem;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-heading);
+}
+
+/* Reset for Unordered Lists */
+ul {
+    margin: 0;
+}
+
+/* Utility Class: Steel Background */
+.bg-steel {
+    background-color: var(--bg-steel);
+}
+
+/* Navigation Link Styles */
+.site-header .navbar-nav .nav-link {
+    color: var(--color-nav-link);
+}
+
+.site-header .navbar-nav .nav-link:hover {
+    color: var(--color-nav-link-hover);
+}
+
+.site-header .navbar-nav .nav-link.active {
+    font-weight: 500;
+}
+
+/* Content Section */
+.content-section {
+    background: var(--color-content-bg);
+    padding: 10px 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+/* Article Title */
+.article-title {
+    color: var(--color-heading);
+}
+
+a.article-title:hover {
+    color: var(--color-link-hover);
+    text-decoration: none;
+}
+
+/* Article Content */
+.article-content {
+    white-space: pre-line;
+}
+
+/* Article Image */
+.article-img {
+    height: 65px;
+    width: 65px;
+    margin-right: 16px;
+}
+
+/* Artcle Metadata */
+.article-metadata {
+    padding-bottom: 1px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid var(--metadata-border-color);
+}
+
+.article-metadata a:hover {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+/* SVG Icon in Article */
+.article-svg {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+}
+
+/* Account Image */
+.account-img {
+    height: 125px;
+    width: 125px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+}
+
+/* Account Heading */
+.account-heading {
+    font-size: 2.5rem;
+}

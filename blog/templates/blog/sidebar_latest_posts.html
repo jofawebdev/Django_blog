@@ -1,0 +1,12 @@
+<div class="content-section">
+    <h3>Latest Posts</h3>
+    <ul class="list-group">
+        {% for post in latest_posts %}
+            <li class="list-group-item">
+                <a href="{% url 'post-detail' post.pk %}">{{ post.title }}</a>
+            </li>
+        {% empty %}
+            <li class="list-group-item">No posts available</li>
+        {% endfor %}
+    </ul>
+</div>
