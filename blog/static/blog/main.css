@@ -109,3 +109,166 @@ a.article-title:hover {
 .account-heading {
     font-size: 2.5rem;
 }
+
+
+/* About Page Styles */
+.about-hero {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+}
+
+.platform-stats .card {
+    transition: transform 0.3s ease;
+}
+
+.platform-stats .card:hover {
+    transform: translateY(-5px);
+}
+
+.technology .card {
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.technology .card:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #fff;
+}
+
+.team .card-img-top {
+    height: 250px;
+    object-fit: cover;
+    object-position: top;
+}
+
+/* Accessibility */
+[itemprop="image"] {
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .about-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .team .card {
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* Feature Icons Styling */
+.features .icon-wrapper {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(52, 152, 219, 0.1);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.features .card:hover .icon-wrapper {
+    background: rgba(52, 152, 219, 0.2);
+    transform: scale(1.1);
+}
+
+
+/* Footer Styles */
+.footer {
+    background-color: #2c3e50; /* Matching navbar bg-steel color */ 
+}
+
+.footer a {
+    color: #ecf0f1;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #3498db;
+    text-decoration: underline;
+}
+
+.footer h5 {
+    color: #fff;
+    margin-bottom: 1.2rem;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+.footer .text-muted {
+    color: #bdc3c7 !important;
+}
+
+.footer .border-top {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+
+/* Newsletter Form Styles */
+.subscribe-form {
+    margin-top: 1rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #4a7c6b;
+    box-shadow: 0 0 0 0.2rem rgba(42, 77, 59, 0.25);
+}
+
+.bg-marble-green {
+    background-color: #2a4d3b;
+}
+
+.btn-newsletter {
+    padding: 0.75rem 1.5rem;
+    background-color: #345f4c;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.btn-newsletter:hover {
+    background-color: #4a7c6b;
+}
+
+/* Accessibility improvements */
+.form-input::placeholder {
+    color: #c0c0c0;
+    opacity: 1;
+}
+
+/* Ensure proper spacing in form group */
+.input-group {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+
+/* Add to your CSS file */
+@media (min-width: 768px) {
+    .footer .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .footer .col-md-3 {
+        display: flex;
+        flex-direction: column;
+    }
+}

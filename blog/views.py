@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.views.generic import (
@@ -8,7 +9,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from .models import Post
+from .models import Post, Subscription
 
 
 def home(request):
@@ -78,22 +79,92 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 def about(request):
-    about_info = {
-        'title': 'About Django Blog',
-        'heading': 'About Django Blog',
-        'description': (
-            "Django Blog is a modern and intuitive platform for sharing your thoughts. "
-            "Built with Django and styled with Bootstrap 5, it provides a clean, responsive, "
-            "and engaging experience for bloggers and readers alike."
-        ),
-        'features': [
-            "Clean, modern design",
-            "Responsive layout with Bootstrap 5",
-            "User-friendly interface",
-            "Easy post creation and management",
-            "Secure and scalable architecture"
+    """Render the about page with detailed platform information, team data, and technical specifications."""
+    about_data = {
+        'meta': {
+            'title': 'About Django Blog | Modern Blogging Platform',
+            'description': 'Discover Django Blog - a feature-rich blogging platform built with Python/Django. Learn about our mission, technology stack, and development team.'
+        },
+        'hero': {
+            'heading': 'Empowering Content Creators Worldwide',
+            'subheading': 'A Modern Django-Powered Blogging Platform',
+            'image_url': 'blog/images/about-hero.jpg',  # Update path as needed
+            'cta_text': 'Start Blogging Today'
+        },
+        'platform': {
+            'stats': [
+                {'value': '10K+', 'label': 'Monthly Readers'},
+                {'value': '95%', 'label': 'User Satisfaction'},
+                {'value': '24/7', 'label': 'Uptime'},
+                {'value': '100%', 'label': 'Open Source'}
+            ],
+            'features': [
+                {
+                    'title': 'Modern Architecture',
+                    'description': 'Built with Django REST Framework and PostgreSQL',
+                    'icon': 'fas fa-server'
+                },
+                {
+                    'title': 'Responsive Design',
+                    'description': 'Mobile-first approach with Bootstrap 5',
+                    'icon': 'fas fa-mobile-alt'
+                },
+                {
+                    'title': 'Secure Platform',
+                    'description': 'HTTPS enforcement and XSS protection',
+                    'icon': 'fas fa-shield-alt'
+                },
+                {
+                    'title': 'SEO Optimized',
+                    'description': 'Schema markup and meta tags management',
+                    'icon': 'fas fa-search'
+                }
+            ]
+        },
+        'team': [
+            {
+                'name': 'Alex Chen',
+                'role': 'Lead Developer',
+                'bio': 'Full-stack developer with 8+ years experience in Django',
+                'image': 'blog/team/alex.jpg',
+                'social': {
+                    'github': '#',
+                    'linkedin': '#'
+                }
+            },
+            {
+                'name': 'Maria Gonzalez',
+                'role': 'UX Designer',
+                'bio': 'Specialist in user-centered design systems',
+                'image': 'blog/team/maria.jpg',
+                'social': {
+                    'dribbble': '#',
+                    'twitter': '#'
+                }
+            }
         ],
-        'developer_info': "Developed with passion and commitment to quality. Enjoy your blogging journey!",
-        'image_url': 'blog/about.jpg', # Place the image in blog/static/blog/about.jpg
+        'technology': {
+            'stack': [
+                {'name': 'Django 4.2', 'logo': 'blog/tech/django.png'},
+                {'name': 'Python 3.11', 'logo': 'blog/tech/python.png'},
+                {'name': 'Bootstrap 5', 'logo': 'blog/tech/bootstrap.png'},
+                {'name': 'PostgreSQL', 'logo': 'blog/tech/postgresql.png'}
+            ],
+            'github_url': 'https://github.com/yourorg/djangoblog'
+        }
     }
-    return render(request, 'blog/about.html', {'about_info': about_info})
+    return render(request, 'blog/about.html', {'about': about_data})
+
+
+
+def subscribe(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        # Basic Validation
+        if email and '@' in email:
+            # Save to database
+            Subscription.objects.get_or_create(email=email)
+            messages.success(request, 'Thanks for subscribing!')
+        else:
+            messages.error(request, 'Please enter a valid email address.')
+    return redirect('blog-home')

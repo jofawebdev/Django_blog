@@ -2,28 +2,132 @@
 {% load static %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="card shadow">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="{% static about_info.image_url %}" class="img-fluid rounded-start" alt="About Django Blog">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h1 class="card-title">{{ about_info.heading }}</h1>
-                        <p class="card-text">{{ about_info.description }}</p>
-                        <h5 class="mt-4">Key Features:</h5>
-                        <ul class="list-group list-group-flush">
-                            {% for feature in about_info.features %}
-                                <li class="list-group-item">{{ feature }}</li>
-                            {% endfor %}
-                        </ul>
-                        <p class="card-text mt-3">
-                            <small class="text-muted">{{ about_info.developer_info }}</small>
-                        </p>
+    <main class="about-page" itemscope itemtype="https://schema.org/AboutPage">
+        <!-- Hero Section -->
+        <section class="about-hero bg-dark text-light py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <img src="{% static about.hero.image_url %}" 
+                            class="img-fluid rounded-3 shadow" 
+                            alt="Django Blog platform interface" 
+                            loading="lazy"
+                            itemprop="image">
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="px-lg-4">
+                            <h1 class="mb-3" itemprop="headline">{{ about.hero.heading }}</h1>
+                            <p class="lead mb-4" itemprop="description">{{ about.hero.subheading }}</p>
+                            <a href="{% url 'post-create' %}" 
+                            class="btn btn-primary btn-lg px-5" 
+                            role="button">
+                                {{ about.hero.cta_text }}
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
+
+        <!-- Platform Statistics -->
+        <section class="platform-stats py-5 bg-light">
+            <div class="container">
+                <div class="row g-4 text-center">
+                    {% for stat in about.platform.stats %}
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body">
+                                <div class="display-5 text-primary mb-2">{{ stat.value }}</div>
+                                <div class="text-muted">{{ stat.label }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Cards -->
+        <section class="features py-5">
+            <div class="container">
+                <h2 class="text-center mb-5 h1">Platform Features</h2>
+                <div class="row g-4">
+                    {% for feature in about.platform.features %}
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body text-center">
+                                <div class="icon-wrapper mb-3">
+                                    <i class="{{ feature.icon }} fa-3x text-primary"></i>
+                                </div>
+                                <h3 class="h5 mb-3">{{ feature.title }}</h3>
+                                <p class="text-muted mb-0">{{ feature.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Stack -->
+        <section class="technology py-5 bg-dark text-light">
+            <div class="container">
+                <h2 class="text-center mb-5 h1">Technology Stack</h2>
+                <div class="row g-4 justify-content-center">
+                    {% for tech in about.technology.stack %}
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="card bg-transparent border-light">
+                            <img src="{% static tech.logo %}" 
+                                class="card-img-top p-3" 
+                                alt="{{ tech.name }} logo"
+                                loading="lazy">
+                            <div class="card-footer text-center bg-transparent">
+                                <small>{{ tech.name }}</small>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="text-center mt-5">
+                    <a href="{{ about.technology.github_url }}" 
+                    class="btn btn-outline-light" 
+                    target="_blank" 
+                    rel="noopener">
+                        <i class="fab fa-github me-2"></i>View on GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team py-5">
+            <div class="container">
+                <h2 class="text-center mb-5 h1">Our Team</h2>
+                <div class="row g-4 justify-content-center">
+                    {% for member in about.team %}
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <img src="{% static member.image %}" 
+                                class="card-img-top" 
+                                alt="{{ member.name }}" 
+                                loading="lazy">
+                            <div class="card-body text-center">
+                                <h3 class="h5 mb-2">{{ member.name }}</h3>
+                                <p class="text-muted mb-3">{{ member.role }}</p>
+                                <p class="card-text">{{ member.bio }}</p>
+                                <div class="social-links">
+                                    {% for platform, url in member.social.items %}
+                                    <a href="{{ url }}" class="text-decoration-none me-2">
+                                        <i class="fab fa-{{ platform }}"></i>
+                                    </a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </main>
 {% endblock %}
